@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>thank you 💌</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💌</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg1:#fff1e6; --bg2:#ffd9e4; --bg3:#e6dcff;
+  --paper:#fffdf8; --ink:#43243a; --soft:#8b6479;
+  --rose:#e0577f; --rose-d:#b93d62; --butter:#ffd98e; --lav:#cdbcff;
+  --hand:"Caveat","Segoe Print","Bradley Hand",cursive;
+  --sans:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root{--bg1:#241529;--bg2:#3a1b35;--bg3:#2b2250;--paper:#3b2038;--ink:#ffeaf1;--soft:#dcb2c6;--rose:#ff7da3;--rose-d:#e85c88}
+}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{
+  font-family:var(--sans);color:var(--ink);overflow:hidden;
+  background:
+    radial-gradient(70% 60% at 85% 10%,var(--bg3),transparent 70%),
+    radial-gradient(90% 80% at 10% 90%,var(--bg2),transparent 70%),
+    var(--bg1);
+  display:grid;place-items:center;
+  padding:env(safe-area-inset-top,0) 16px env(safe-area-inset-bottom,0);
+}
+.sky{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.sky span{position:absolute;bottom:-40px;font-size:var(--s);opacity:.5;animation:rise var(--d) linear infinite;animation-delay:var(--w)}
+@keyframes rise{to{transform:translateY(-110vh) rotate(var(--r))}}
+
+/* ---------- envelope ---------- */
+.stage{position:relative;width:min(88vw,340px);text-align:center}
+.env{
+  position:relative;width:100%;aspect-ratio:3/2;perspective:900px;cursor:pointer;
+  filter:drop-shadow(0 24px 24px rgba(150,50,90,.28));
+  transition:opacity .5s .35s,transform .6s .35s;
+}
+.env .back{position:absolute;inset:0;background:linear-gradient(160deg,#ffc2d4,#ffb3c9);border-radius:14px}
+.env .front{
+  position:absolute;inset:0;border-radius:14px;
+  background:
+    linear-gradient(to top right,transparent 49.5%,#ffd0de 50%) left/51% 100% no-repeat,
+    linear-gradient(to top left,transparent 49.5%,#ffc7d8 50%) right/51% 100% no-repeat;
+  clip-path:inset(0 round 14px);
+}
+.env .flap{
+  position:absolute;left:0;right:0;top:0;height:62%;
+  background:linear-gradient(#ffdbe6,#ffc2d4);
+  clip-path:polygon(0 0,100% 0,50% 100%);
+  transform-origin:top;transition:transform .7s ease;z-index:3;
+}
+.seal{
+  position:absolute;left:50%;top:62%;width:58px;height:58px;margin:-29px 0 0 -29px;z-index:4;
+  display:grid;place-items:center;font-size:1.6rem;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#ff8fae,var(--rose-d));
+  box-shadow:0 6px 12px rgba(120,20,60,.35);
+  animation:beat 1.6s ease-in-out infinite;transition:opacity .25s;
+}
+@keyframes beat{50%{transform:scale(1.12)}}
+.hint{margin-top:26px;font-family:var(--hand);font-size:1.7rem;color:var(--rose-d)}
+.stage.open .flap{transform:rotateX(180deg)}
+.stage.open .seal{opacity:0;animation:none}
+.stage.open .env{opacity:0;transform:translateY(40px) scale(.92);pointer-events:none}
+.stage.open .hint{opacity:0}
+.hint{transition:opacity .3s}
+
+/* ---------- letter ---------- */
+.letter{
+  position:absolute;left:50%;top:50%;width:min(90vw,420px);
+  background:var(--paper);border-radius:6px 28px 28px 28px;
+  padding:34px 28px 26px;text-align:center;
+  box-shadow:0 30px 60px -24px rgba(130,40,80,.5);
+  background-image:repeating-linear-gradient(transparent 0 33px,rgba(224,87,127,.12) 33px 34px);
+  background-position:0 20px;
+  transform:translate(-50%,-40%) scale(.85);opacity:0;pointer-events:none;
+  transition:opacity .5s .55s,transform .7s .55s cubic-bezier(.2,1.3,.4,1);
+}
+.letter::before{ /* washi tape */
+  content:"";position:absolute;top:-12px;left:50%;width:96px;height:24px;margin-left:-48px;
+  background:repeating-linear-gradient(135deg,var(--butter) 0 8px,#ffe8b8 8px 16px);
+  transform:rotate(-3deg);border-radius:3px;opacity:.95;
+}
+.stage.open .letter{opacity:1;transform:translate(-50%,-50%) scale(1);pointer-events:auto}
+.stage.open{min-height:520px}
+.stage:not(.open){min-height:0}
+h1{font-family:var(--hand);font-size:clamp(3.2rem,15vw,5rem);line-height:.9;color:var(--rose)}
+.sub{font-family:var(--hand);font-size:1.8rem;color:var(--ink);margin-top:4px}
+.lines{margin:20px auto 16px;max-width:30ch;font-size:1.04rem;line-height:1.7;color:var(--soft)}
+.lines p{opacity:0;transform:translateY(8px);transition:opacity .6s,transform .6s}
+.stage.open .lines p{opacity:1;transform:none;transition-delay:calc(1.1s + var(--i)*.55s)}
+.sign{font-family:var(--hand);font-size:1.9rem;color:var(--rose-d);margin-top:6px;opacity:0;transition:opacity .6s 3s}
+.stage.open .sign{opacity:1}
+.hug{
+  margin-top:18px;border:0;cursor:pointer;font:inherit;font-weight:700;font-size:1rem;
+  background:var(--rose);color:#fff;padding:13px 26px;border-radius:99px;
+  box-shadow:0 7px 0 var(--rose-d);transition:transform .1s,box-shadow .1s;
+  opacity:0;transition:opacity .6s 3.2s,transform .1s,box-shadow .1s;
+}
+.stage.open .hug{opacity:1}
+.hug:active{transform:translateY(5px);box-shadow:0 2px 0 var(--rose-d)}
+.hug:focus-visible,.env:focus-visible{outline:3px solid var(--ink);outline-offset:4px}
+.count{margin-top:12px;font-size:.84rem;color:var(--soft);min-height:1.2em}
+.pop{position:fixed;pointer-events:none;font-size:var(--s);z-index:9;animation:pop 1.3s ease-out forwards}
+@keyframes pop{to{transform:translate(var(--x),var(--y)) rotate(var(--r)) scale(.6);opacity:0}}
+@media (prefers-reduced-motion:reduce){
+  .sky span,.seal{animation:none}
+  .env,.flap,.letter,.lines p,.sign,.hug{transition-duration:.01s;transition-delay:0s!important}
+}
+</style>
+</head>
+<body>
+<div class="sky" id="sky" aria-hidden="true"></div>
+
+<main class="stage" id="stage">
+  <div class="env" id="env" role="button" tabindex="0" aria-label="Open the letter">
+    <div class="back"></div>
+    <div class="front"></div>
+    <div class="flap"></div>
+    <div class="seal">💗</div>
+  </div>
+  <p class="hint" id="hint">tap to open</p>
+
+  <section class="letter" aria-live="polite">
+    <h1 id="title">thank you</h1>
+    <p class="sub" id="sub">cutie</p>
+    <div class="lines" id="lines"></div>
+    <p class="sign" id="sign">with love</p>
+    <button class="hug" id="hug">Send a hug back 🤗</button>
+    <p class="count" id="count"></p>
+  </section>
+</main>
+
+<script>
+/* ======== EDIT THIS PART ======== */
+const CONFIG = {
+  name: "cutie",              // the line under "thank you"
+  hint: "tap to open",
+  lines: [
+    "You showed up when it mattered.",
+    "You made a tough day feel lighter.",
+    "I’m so grateful to have you in my life."
+  ],
+  sign: "with love, your name 💖",
+  hugReplies: ["sent 🤗", "sent again 💞", "okay that’s a lot of hugs 🥹", "…and one more 💗"],
+  emoji: ["💖","🌷","✨","🧸","🍓","💗","🌸"]
+};
+/* ================================ */
+
+const $ = id => document.getElementById(id);
+const stage = $("stage"), env = $("env");
+$("sub").textContent = CONFIG.name;
+$("hint").textContent = CONFIG.hint;
+$("sign").textContent = CONFIG.sign;
+document.title = "thank you, " + CONFIG.name + " 💌";
+CONFIG.lines.forEach((t, i) => {
+  const p = document.createElement("p");
+  p.textContent = t; p.style.setProperty("--i", i);
+  $("lines").appendChild(p);
+});
+
+/* floating background */
+const sky = $("sky");
+for (let i = 0; i < 14; i++) {
+  const s = document.createElement("span");
+  s.textContent = CONFIG.emoji[i % CONFIG.emoji.length];
+  s.style.cssText = `left:${Math.random()*100}%;--s:${14+Math.random()*20}px;--d:${14+Math.random()*14}s;--w:-${Math.random()*22}s;--r:${(Math.random()*120-60)|0}deg`;
+  sky.appendChild(s);
+}
+
+/* open the envelope */
+function openEnv(){
+  if (stage.classList.contains("open")) return;
+  stage.classList.add("open");
+  burst(innerWidth / 2, innerHeight / 2, 14);
+}
+env.addEventListener("click", openEnv);
+env.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openEnv(); } });
+
+/* hugs */
+let hugs = 0;
+function burst(x, y, n){
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  for (let i = 0; i < n; i++) {
+    const p = document.createElement("span");
+    p.className = "pop";
+    p.textContent = CONFIG.emoji[(Math.random() * CONFIG.emoji.length) | 0];
+    p.style.cssText = `left:${x}px;top:${y}px;--s:${18+Math.random()*18}px;--x:${(Math.random()*240-120)|0}px;--y:${(-60-Math.random()*180)|0}px;--r:${(Math.random()*120-60)|0}deg`;
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 1400);
+  }
+}
+$("hug").addEventListener("click", e => {
+  hugs++;
+  const r = e.currentTarget.getBoundingClientRect();
+  burst(r.left + r.width / 2, r.top, 10);
+  $("count").textContent = CONFIG.hugReplies[Math.min(hugs - 1, CONFIG.hugReplies.length - 1)] + (hugs > 1 ? "  ×" + hugs : "");
+});
+</script>
+</body>
+</html>
